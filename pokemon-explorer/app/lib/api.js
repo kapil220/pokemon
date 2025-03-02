@@ -1,13 +1,11 @@
-// app/lib/api.js
 
-// Base URL for the PokeAPI
 const API_BASE_URL = 'https://pokeapi.co/api/v2';
 
 /**
- * Fetch a paginated list of Pokemon
- * @param {number} limit - Number of Pokemon to fetch per page
- * @param {number} offset - Offset for pagination
- * @returns {Promise<Object>} - Promise that resolves to the list of Pokemon
+
+ * @param {number} limit 
+ * @param {number} offset 
+ * @returns {Promise<Object>} 
  */
 export async function getPokemonList(limit = 20, offset = 0) {
   const response = await fetch(`${API_BASE_URL}/pokemon?limit=${limit}&offset=${offset}`);
@@ -18,7 +16,7 @@ export async function getPokemonList(limit = 20, offset = 0) {
   
   const data = await response.json();
   
-  // Enhance the results with IDs and image URLs
+
   const enhancedResults = data.results.map(pokemon => {
     const id = pokemon.url.split('/').filter(Boolean).pop();
     return {
@@ -35,9 +33,9 @@ export async function getPokemonList(limit = 20, offset = 0) {
 }
 
 /**
- * Fetch detailed information about a specific Pokemon
- * @param {string} idOrName - The ID or name of the Pokemon
- * @returns {Promise<Object>} - Promise that resolves to the Pokemon details
+
+ * @param {string} idOrName 
+ * @returns {Promise<Object>} 
  */
 export async function getPokemonDetails(idOrName) {
   const response = await fetch(`${API_BASE_URL}/pokemon/${idOrName}`);
